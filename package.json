@@ -1,0 +1,33 @@
+{
+  "name": "cuebot-web",
+  "version": "1.0.0-alpha-007",
+  "description": "Web Test Automation Framework using CucumberJS",
+  "main": "bin/cuebot-web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonathan Magaru",
+  "license": "MIT",
+  "bin": {
+    "cuebot-web": "bin/cuebot-web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmagaru/cuebot-web.git"
+  },
+  "dependencies": {
+    "chromedriver": "^81.0.0",
+    "color": "^3.1.2",
+    "colors": "^1.4.0",
+    "cucumber": "^6.0.5",
+    "cucumber-html-reporter": "^5.2.0",
+    "geckodriver": "^1.19.1",
+    "iedriver": "^3.14.2",
+    "safari": "0.0.1",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "files": [
+    "bin/",
+    "lib/"
+  ]
+}
