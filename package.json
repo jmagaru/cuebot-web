@@ -1,6 +1,6 @@
 {
   "name": "cuebot-web",
-  "version": "1.0.0-alpha-007",
+  "version": "1.0.0-alpha-008",
   "description": "Web Test Automation Framework using CucumberJS",
   "main": "bin/cuebot-web.js",
   "scripts": {

@@ -1,7 +1,62 @@
 #!/usr/bin/env node
 
-const cuebot = () => {
-  console.log(" You have successfully installed cuebot-web!!");
-};
+// CUEBOT-WEB RUNNER
+// Copyright 2020 Jonathan Magary <jonathan.magaru.code@gmail.com>
+// Licensed under the MIT license. See LICENSE.
 
-cuebot();
+const { exec } = require("child_process");
+
+const semver = require("semver");
+const path = require("path");
+const package = require(path.resolve(__dirname, "../package.json"));
+const colors = require("chalk");
+const Table = require("cli-table3");
+
+const program = require("commander");
+
+// Getting the current installed cuebot-web version
+let latestVersion = undefined;
+exec("npm show cuebot-web version", async (error, stdout, stderr) => {
+  latestVersion = stdout.replace(/\n/, "");
+});
+
+// Prompt if the current installed cuebot-web version is the latest version
+process.on("exit", () => {
+  if (latestVersion && semver.gt(latestVersion, package.version)) {
+    const version = `New version available: ${colors.green.bold.underline(
+      latestVersion
+    )}`;
+    const update = `Update now: ${colors.yellow.bold(
+      "npm install cuebot-web@latest"
+    )}.`;
+    let newVersionTable = new Table();
+    newVersionTable.push([version], [update]);
+    process.stdout.write("\n" + newVersionTable.toString() + "\n");
+  }
+});
+
+program
+  .version(package.version)
+  .option("-e, --exec", "Run Automated Test")
+  .option("-v, --ver", "Current CUEBOT-WEB version")
+  .parse(process.argv);
+
+if (program.exec) {
+  require("./cuebot-web-client")
+    .default(program)
+    .then(
+      (code) => {
+        process.exit(code);
+      },
+      () => {
+        process.exit(1);
+      }
+    );
+}
+if (program.ver) {
+  console.log(
+    `[INFO] - You are currently using version :  ${colors.yellow.bold(
+      package.version
+    )}`
+  );
+}
