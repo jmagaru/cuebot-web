@@ -1,0 +1,151 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Products List",
+    "line": 1,
+    "id": "products-list",
+    "tags": [],
+    "uri": "features\\test.feature",
+    "elements": [
+      {
+        "id": "products-list;navigate-to-hub-homepage",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "Navigate to Hub Homepage",
+        "tags": [
+          {
+            "name": "@Test2",
+            "line": 3
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "User navigate to 'https://web-team.outsystemscloud.com/ibsproject/LoginScreen'",
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5171000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "User landed on the page",
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 0
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "User successfully landed on the page",
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:51"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:60"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      },
+      {
+        "id": "products-list;verify-the-page-elements-on-prepaid-login-block",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Verify the Page Elements on Prepaid Login Block",
+        "tags": [
+          {
+            "name": "@Test3",
+            "line": 9
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:33"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "User navigate to 'https://web-team.outsystemscloud.com/ibsproject/LoginScreen'",
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4890000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "Page element 'btnLogin' is displayed",
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:55"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1596000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "lib\\steps\\web\\test-steps.js:60"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

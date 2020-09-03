@@ -16,7 +16,7 @@
     "url": "https://github.com/jmagaru/cuebot-web.git"
   },
   "dependencies": {
-    "chromedriver": "^81.0.0",
+    "chromedriver": "^85.0.0",
     "color": "^3.1.2",
     "colors": "^1.4.0",
     "cucumber": "^6.0.5",

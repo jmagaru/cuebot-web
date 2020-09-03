@@ -15,9 +15,27 @@ module.exports.default = ({ specs, tags }) => {
     fs.mkdirSync("reports/snapshots", { recursive: true });
   }
 
+  // writeFile report json file default
+  if (!fs.existsSync("reports/cuebot-web-report.json")) {
+    fs.writeFile("reports/cuebot-web-report.json", "[]", function (err) {
+      if (err) throw err;
+    });
+  }
+
+  //Defining Library folder
+
+  let cuebotWebPath = path.resolve(__dirname, "../lib/");
+
   // Catenate Client options
   let clientOptions = ["", ""];
   if (specs) clientOptions = clientOptions.concat([specs]);
+
+  clientOptions = clientOptions.concat([
+    `--require=${cuebotWebPath}/steps/web/test-steps.js`,
+    `--require=${cuebotWebPath}/reports/report-generator.js`,
+    `--format=json:reports/cuebot-web-report.json`,
+  ]);
+
   if (tags) clientOptions = clientOptions.concat(["--tags", `${tags}`]);
 
   let client = new (require("cucumber").Cli)({

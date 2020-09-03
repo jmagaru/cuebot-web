@@ -14,6 +14,8 @@ const Table = require("cli-table3");
 
 const program = require("commander");
 
+const fs = require("fs");
+
 // Getting the current installed cuebot-web version
 let latestVersion = undefined;
 exec("npm show cuebot-web version", async (error, stdout, stderr) => {
@@ -43,7 +45,27 @@ program
     "-t, --tags [tags]",
     'Use with --exec to specify which tags to run, example:"@testtags"'
   )
+  .option(
+    "-c, --clean",
+    "Deletes existing reports and snapshots before running new test."
+  )
   .parse(process.argv);
+
+let clean = (folder) => {
+  if (fs.existsSync(folder)) {
+    fs.readdirSync(folder).forEach(function (item) {
+      const file = path.join(folder, item);
+      if (fs.lstatSync(file).isDirectory()) {
+        clean(file);
+      } else {
+        fs.unlinkSync(file);
+      }
+    });
+    fs.rmdirSync(folder);
+  }
+};
+
+if (program.clean) clean("reports");
 
 if (program.exec) {
   require("./cuebot-web-client")
@@ -56,6 +78,8 @@ if (program.exec) {
         process.exit(1);
       }
     );
+} else {
+  program.outputHelp();
 }
 if (program.ver) {
   console.log(
