@@ -39,6 +39,10 @@ program
   .version(package.version)
   .option("-e, --exec", "Run Automated Test")
   .option("-v, --ver", "Current CUEBOT-WEB version")
+  .option(
+    "-t, --tags [tags]",
+    'Use with --exec to specify which tags to run, example:"@testtags"'
+  )
   .parse(process.argv);
 
 if (program.exec) {
