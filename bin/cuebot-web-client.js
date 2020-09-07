@@ -22,6 +22,13 @@ module.exports.default = ({ specs, tags }) => {
     });
   }
 
+  // writeFile report html file default
+  if (!fs.existsSync("reports/cuebot-web-report.html")) {
+    fs.writeFile("reports/cuebot-web-report.html", "[]", function (err) {
+      if (err) throw err;
+    });
+  }
+
   //Defining Library folder
 
   let cuebotWebPath = path.resolve(__dirname, "../lib/");
@@ -32,7 +39,6 @@ module.exports.default = ({ specs, tags }) => {
 
   clientOptions = clientOptions.concat([
     `--require=${cuebotWebPath}/steps/web/test-steps.js`,
-    `--require=${cuebotWebPath}/reports/report-generator.js`,
     `--format=json:reports/cuebot-web-report.json`,
   ]);
 

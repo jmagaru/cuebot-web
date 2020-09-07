@@ -16,11 +16,25 @@ const program = require("commander");
 
 const fs = require("fs");
 
+const open = require("open");
+
 // Getting the current installed cuebot-web version
 let latestVersion = undefined;
 exec("npm show cuebot-web version", async (error, stdout, stderr) => {
   latestVersion = stdout.replace(/\n/, "");
 });
+
+const generateHtmlReports = () => {
+  let reportGeneratorPath = path.resolve(
+    __dirname,
+    "../lib/reports/report-generator.js"
+  );
+  exec(`node ${reportGeneratorPath}`, async (error, stdout, stderr) => {
+    console.log("Error is : " + error);
+    console.log("System Error is : " + stderr);
+    console.log("System Out is : " + stdout);
+  });
+};
 
 // Prompt if the current installed cuebot-web version is the latest version
 process.on("exit", () => {
@@ -72,9 +86,11 @@ if (program.exec) {
     .default(program)
     .then(
       (code) => {
+        generateHtmlReports();
         process.exit(code);
       },
       () => {
+        generateHtmlReports();
         process.exit(1);
       }
     );
