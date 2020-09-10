@@ -38,6 +38,7 @@ const generateHtmlReports = () => {
 
 // Prompt if the current installed cuebot-web version is the latest version
 process.on("exit", () => {
+  generateHtmlReports();
   if (latestVersion && semver.gt(latestVersion, package.version)) {
     const version = `New version available: ${colors.green.bold.underline(
       latestVersion
