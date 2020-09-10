@@ -4,7 +4,7 @@
 // Copyright 2020 Jonathan Magary <jonathan.magaru.code@gmail.com>
 // Licensed under the MIT license. See LICENSE.
 
-const { exec } = require("child_process");
+const { spawn } = require("child_process");
 
 const semver = require("semver");
 const path = require("path");
@@ -18,6 +18,10 @@ const fs = require("fs");
 
 const open = require("open");
 
+const util = require("util");
+const { exec } = require("child_process");
+const shell = require("shelljs");
+
 // Getting the current installed cuebot-web version
 let latestVersion = undefined;
 exec("npm show cuebot-web version", async (error, stdout, stderr) => {
@@ -29,16 +33,32 @@ const generateHtmlReports = () => {
     __dirname,
     "../lib/reports/report-generator.js"
   );
+
   exec(`node ${reportGeneratorPath}`, async (error, stdout, stderr) => {
     console.log("Error is : " + error);
     console.log("System Error is : " + stderr);
     console.log("System Out is : " + stdout);
+    if (stdout) {
+      console.log(reportGeneratorPath);
+    }
+    if (error) {
+      console.log("Error : " + reportGeneratorPath);
+    }
   });
+};
+
+const createReports = () => {
+  let reportGeneratorPath = path.resolve(
+    __dirname,
+    "../lib/reports/report-generator.js"
+  );
+  let commandExec = `node "${reportGeneratorPath}"`;
+  shell.exec(commandExec, { silent: true }).stdout;
 };
 
 // Prompt if the current installed cuebot-web version is the latest version
 process.on("exit", () => {
-  generateHtmlReports();
+  createReports();
   if (latestVersion && semver.gt(latestVersion, package.version)) {
     const version = `New version available: ${colors.green.bold.underline(
       latestVersion
@@ -87,11 +107,9 @@ if (program.exec) {
     .default(program)
     .then(
       (code) => {
-        generateHtmlReports();
         process.exit(code);
       },
       () => {
-        generateHtmlReports();
         process.exit(1);
       }
     );
