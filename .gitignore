@@ -3,3 +3,4 @@ node_modules/
 features/
 reports/snapshots/
 reports/*.*
+debug.log

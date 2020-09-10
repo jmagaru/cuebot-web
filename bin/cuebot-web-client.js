@@ -9,7 +9,7 @@ const path = require("path");
 const fs = require("fs");
 const colors = require("chalk");
 
-module.exports.default = ({ specs, tags }) => {
+module.exports.default = ({ specs, tags, formatter }) => {
   // Recreating screenshot folders
   if (!fs.existsSync("reports/snapshots")) {
     fs.mkdirSync("reports/snapshots", { recursive: true });
@@ -40,9 +40,12 @@ module.exports.default = ({ specs, tags }) => {
   clientOptions = clientOptions.concat([
     `--require=${cuebotWebPath}/steps/web/test-steps.js`,
     `--format=json:reports/cuebot-web-report.json`,
+    `--format=${cuebotWebPath}/formatter/cuebot-formatter.js`,
   ]);
 
   if (tags) clientOptions = clientOptions.concat(["--tags", `${tags}`]);
+  if (formatter)
+    clientOptions = clientOptions.concat([`--format=${formatter}`]);
 
   let client = new (require("cucumber").Cli)({
     argv: clientOptions,
