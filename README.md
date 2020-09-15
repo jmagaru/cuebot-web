@@ -113,13 +113,13 @@ Now download and install latest cuebot-web
 To create and initialize sample project, execute the following command
 
 ```cmd
- node_module\.bin\cuebot-web --init
+ node_modules\.bin\cuebot-web --init
 ```
 
 To run the sample project and display the test report, execute the following command
 
 ```cmd
- node_module\.bin\cuebot-web --exec
+ node_modules\.bin\cuebot-web --exec
 ```
 
 ### How to create the test script ???

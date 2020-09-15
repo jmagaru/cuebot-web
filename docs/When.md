@@ -23,6 +23,7 @@ Scenario: Validate user page access
 ```
 
 _The example above will click on the Forgot Account link (locator is in the form of CSS Selector)_
+
 **_Note : This time, use double-quote instead of single-quote in the locator parameter_**
 
 ---
