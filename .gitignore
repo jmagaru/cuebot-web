@@ -4,3 +4,4 @@ features/
 reports/snapshots/
 reports/*.*
 debug.log
+genlog.sh
