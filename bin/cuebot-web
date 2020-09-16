@@ -98,14 +98,12 @@ if (program.exec) {
     );
 } else if (program.init) {
   require("./cuebot-web-init").default();
-} else {
-  program.outputHelp();
-}
-
-if (program.ver) {
+} else if (program.ver) {
   console.log(
-    `[INFO] - You are currently using version :  ${colors.yellow.bold(
+    `\nYou are currently using version :  ${colors.yellow.bold(
       package.version
     )}`
   );
+} else {
+  program.outputHelp();
 }
